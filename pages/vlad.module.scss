@@ -1,6 +1,4 @@
 .vlad {
-    background-color: aquamarine;
-
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
@@ -30,19 +28,39 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 500;
     margin: 0 auto;
+    font-size: 40px;
 }
 
 .warehouses
 {
-    background-color: green;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 500;
     font-size: 24px;
+    margin: 0 auto;
 }
 
-.warehouse
+.warehouseInput
 {
-    background-color: red;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+}
+
+.warehouseItem
+{
+    height: 15%;
+    border: 2px solid grey;
+    margin-bottom: 5px;
+    border-radius: 7px;
+    padding: 5px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
 }
 
 
