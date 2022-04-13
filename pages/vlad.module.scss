@@ -1,5 +1,76 @@
 .vlad {
-    background-color: aquamarine;
-
-    // admin4 admin4
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
 }
+
+.pageContent {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+
+    .controls
+    {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+.name 
+{
+    font-weight: 500;
+    margin: 0 auto;
+    font-size: 40px;
+    margin-top: 4vh;
+    min-width: 5002px;
+}
+
+.warehouses
+{
+    font-weight: 500;
+    font-size: 24px;
+    margin: 15vh auto 3vh auto;
+}
+
+.warehouseInput
+{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+}
+
+.warehouseList
+{
+    margin-top: 3vh;
+}
+
+.warehouseItem
+{
+    height: 15%;
+    border: 2px solid grey;
+    margin-bottom: 5px;
+    border-radius: 7px;
+    padding: 5px;
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 12px;
+}
+
+.warehouseItem:hover
+{
+    border: 2px solid #0d6efd;
+    cursor: pointer;
+}
+
+
+
+// jmeno: admin4    helso: admin4admin4  company: firma4
