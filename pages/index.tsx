@@ -3,6 +3,8 @@ import styles from "./index.module.scss";
 import { Button, Col, Row, Container, Form } from "react-bootstrap";
 import InputWithButton from "../components/InputWithButton";
 import { NextPage } from "next";
+import { getWarehouses } from "../service/api.service";
+
 
 const Home: NextPage = () => {
   const [counter, setCounter] = useState(0);
@@ -11,15 +13,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     let t = "t";
-    let url = "https://inventura.flexibee.eu/v2/c/firma4/sklad?detail=full";
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: "Basic YWRtaW40OmFkbWluNGFkbWluNA==",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
+    getWarehouses()
       .then(
         (result) => {
           setWarehouses(result.winstrom.sklad);
