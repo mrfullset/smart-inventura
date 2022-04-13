@@ -1,19 +1,37 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import ProductItem from "../components/ProductItem";
-import { getAllProducts } from "../service/LocalStorageService";
+import {
+  addOrUpdateProduct,
+  getAllProducts,
+  getProduct,
+} from "../service/LocalStorageService";
 import styles from "./scanned-items.module.scss";
 
 const ScannedItems = () => {
   const router = useRouter();
+  const [r, sr] = useState({});
 
+  const onQuantityChange = (code: string, q: number) => {
+    const p = getProduct(code)!;
+    p.scannedQuantity = q;
+    addOrUpdateProduct(p);
+    sr({});
+  };
+
+  if (typeof window === "undefined") {
+    return <></>;
+  }
   const products = getAllProducts();
   const productsDOM = products.map((product) => (
     <ProductItem
+      key={product.code}
       name={product.name}
       quanity={product.scannedQuantity}
-      onQuantityChange={() => {}}
+      onQuantityChange={(e) => {
+        onQuantityChange(product.code, e);
+      }}
       className={styles["product-item"]}
     />
   ));

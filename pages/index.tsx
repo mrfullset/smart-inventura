@@ -35,7 +35,7 @@ const Home: NextPage = () => {
         console.log(error);
       }
     );
-  }, []);
+  }, [warehouses.length]);
 
   const onWarehouseClick = (id: number) => {
     start(id.toString());
@@ -48,13 +48,20 @@ const Home: NextPage = () => {
         <Row>
           <h1 className={styles.name + " display-1"}>KAPYBARA S.R.O</h1>
         </Row>
-
+        <Row>
+          <img className={styles.img} src="/cap.png" alt="cap" />
+        </Row>
         <Row>
           <div className={styles.warehouses}>
             <div className={styles.warehouse}>Scan warehouse ID 🏭</div>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <InputWithButton buttonText="OK" placeholder="TEST ID" />
+                <InputWithButton
+                  buttonText="OK"
+                  placeholder="TEST ID"
+                  value={""}
+                  onValueChange={() => {}}
+                />
                 {/* <Form.Control type="email" className={styles.warehouseInput} placeholder="" /> */}
               </Form.Group>
             </Form>
@@ -62,6 +69,7 @@ const Home: NextPage = () => {
             <div className={styles.warehouseList}>
               {warehouses.map((wh) => (
                 <div
+                  key={wh.id}
                   className={styles.warehouseItem}
                   onClick={() => {
                     onWarehouseClick(wh.id);

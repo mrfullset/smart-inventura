@@ -8,6 +8,12 @@ import { addOrUpdateProduct, getProduct } from "../service/LocalStorageService";
 import StorageProduct from "../types/StorageProduct";
 import styles from "./scan.module.scss";
 
+let audio: any;
+
+if (typeof Audio != "undefined") {
+  audio = new Audio("/die.wav");
+}
+
 const ScanPage = () => {
   const [scannedQuantity, setScannedQuantity] = useState(0);
   const [productData, setProductData] = useState<StorageProduct | null>();
@@ -22,6 +28,15 @@ const ScanPage = () => {
       return;
     }
 
+    if (scan === "special_command666") {
+      onItemDiscard();
+      return;
+    }
+    if (scan === "special_command777") {
+      onSessionEnd(true);
+      return;
+    }
+
     fetchProductData(scan);
     setScan("");
     (scanRef.current as any).focus();
@@ -33,6 +48,7 @@ const ScanPage = () => {
     if (!localProduct) {
       const response = await getCatalog(code);
       if (!response.winstrom["skladova-karta"][0]) {
+        audio.play();
         alert("You scanned non existing item 🤔\nWe’ll ignore it.");
         return;
       }
@@ -75,12 +91,16 @@ const ScanPage = () => {
     });
   };
 
-  const onSessionEnd = () => {
-    const result = confirm("Do you want to review goods?");
-    if (result) {
+  const onSessionEnd = (force: boolean) => {
+    if (force) {
       router.push("/scanned-items");
     } else {
-      router.push("/done");
+      const result = confirm("Do you want to review goods?");
+      if (result) {
+        router.push("/scanned-items");
+      } else {
+        router.push("/done");
+      }
     }
   };
 
@@ -129,7 +149,13 @@ const ScanPage = () => {
             </Button>
           </Col>
           <Col xs={6}>
-            <Button onClick={onSessionEnd}>End session</Button>
+            <Button
+              onClick={() => {
+                onSessionEnd(false);
+              }}
+            >
+              End session
+            </Button>
           </Col>
         </Row>
         <Row>
