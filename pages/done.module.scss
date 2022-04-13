@@ -1,0 +1,23 @@
+.done {
+    height: 100%;
+    
+    button {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .label {
+        width: 100%;
+        height: calc(100% - 140px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        text-align: center;
+
+        .smile {
+            font-size: 6rem;
+        }
+    }
+}
