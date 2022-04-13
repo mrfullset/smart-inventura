@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 import { Button, Col, Row, Container, Form } from "react-bootstrap";
 import InputWithButton from "../components/InputWithButton";
 import { NextPage } from "next";
-import { getWarehouses } from "../service/api.service";
+import { getCatalog, getWarehouses } from "../service/api.service";
 
 
 const Home: NextPage = () => {
@@ -19,6 +19,16 @@ const Home: NextPage = () => {
           setWarehouses(result.winstrom.sklad);
 
           console.log(warehouses.length);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+      getCatalog('10007')
+      .then(
+        (result) => {
+          debugger;
         },
         (error) => {
           console.log(error);

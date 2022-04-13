@@ -39,23 +39,17 @@ export const postInventuraItem = (items: InventuraItem[]) => {
         .then((res) => res.json());
 };
 
-export const getCatalog = (itemCode: string) : SkladovaKartaResponse => {
+export const getCatalog = (itemCode: string) : Promise<SkladovaKartaResponse> => {
 
-    let url = "https://inventura.flexibee.eu/v2/c/firma4/skladova-karta/" + encodeURIComponent('(sklad = "code:SKLAD" and ucetObdobi = "code:2022" and cenik="ean:' + itemCode +'")');
+    let url = "https://inventura.flexibee.eu/v2/c/firma4/skladova-karta/" + encodeURIComponent('(sklad = "code:SKLAD" and ucetObdobi = "code:2022" and cenik="ean:' + itemCode +'")')
+    + '?details=';
 
-    let body =
-    {
-        winstrom: {
-            items
-        }
-    };
-
+  
     return fetch(url, {
         method: "GET",
         headers: {
             Authorization: "Basic YWRtaW40OmFkbWluNGFkbWluNA==",
-            Accept: "application/json",
-            body: JSON.stringify(body)
+            Accept: "application/json"
         },
     })
         .then((res) => res.json());
