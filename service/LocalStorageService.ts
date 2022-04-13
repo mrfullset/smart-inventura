@@ -43,3 +43,8 @@ export const addOrUpdateProduct = (product: StorageProduct) => {
   }
   saveStorage(storage);
 };
+
+export const getAllProducts = () => {
+  const storage = getStorage();
+  return storage.products;
+};

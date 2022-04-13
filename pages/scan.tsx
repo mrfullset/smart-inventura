@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import InputWithButton from "../components/InputWithButton";
 import NumberSelector from "../components/NumberSelector";
+import { getCatalog } from "../service/api.service";
 import { addOrUpdateProduct, getProduct } from "../service/LocalStorageService";
 import StorageProduct from "../types/StorageProduct";
 import styles from "./scan.module.scss";
@@ -26,19 +27,22 @@ const ScanPage = () => {
     (scanRef.current as any).focus();
   };
 
-  const fetchProductData = (code: string) => {
+  const fetchProductData = async (code: string) => {
     const localProduct = getProduct(code);
 
     if (!localProduct) {
-      const remoteProduct = {
-        code: code,
-        name: "Hello World",
-        quantity: 13,
-      };
+      const response = await getCatalog(code);
+      if (!response.winstrom["skladova-karta"][0]) {
+        alert("You scanned non existing item 🤔\nWe’ll ignore it.");
+        return;
+      }
+      const remoteName = response.winstrom["skladova-karta"][0]["cenik@showAs"];
+      const whQuantity =
+        response.winstrom["skladova-karta"][0]["stavMjSPozadavky"];
       const product = {
-        name: remoteProduct.name,
-        code: remoteProduct.code,
-        warehouseQuantity: remoteProduct.quantity,
+        name: remoteName,
+        code: code,
+        warehouseQuantity: whQuantity,
         scannedQuantity: 1,
       };
       addOrUpdateProduct(product);
@@ -130,7 +134,14 @@ const ScanPage = () => {
         </Row>
         <Row>
           <Col xs={12}>
-            <Button variant="outline-primary">Show scanned items</Button>
+            <Button
+              variant="outline-primary"
+              onClick={() => {
+                router.push("/scanned-items");
+              }}
+            >
+              Show scanned items
+            </Button>
           </Col>
         </Row>
       </div>
