@@ -18,34 +18,41 @@ export const getWarehouses = (): Promise<WarehouseResponse> => {
         .then((res) => res.json());
 };
 
-export const postInventuraItem = (items: InventuraItem[]) => {
+export const postInventuraItem = (items: InventuraItem) : Promise<InventoryResult> => {
 
-    let url = "https://inventura.flexibee.eu/v2/c/firma4/sklad?detail=full";
+    let url = "https://inventura.flexibee.eu/v2/c/firma4/inventura/";
 
     let body =
     {
         winstrom: {
-            items
+            inventura: [items]
         }
     };
+
+    let bodyJson = JSON.stringify(body)
 
     return fetch(url, {
         method: "POST",
         headers: {
             Authorization: "Basic YWRtaW40OmFkbWluNGFkbWluNA==",
             Accept: "application/json",
-            body: JSON.stringify(body)
+            'Content-Type': "application/json",
         },
-    })
-        .then((res) => res.json());
+        body: bodyJson,
+        })
+        .then((res) =>
+        { 
+            debugger;
+            res.json()
+        });
 };
 
-export const getCatalog = (itemCode: string) : Promise<SkladovaKartaResponse> => {
+export const getCatalog = (itemCode: string): Promise<SkladovaKartaResponse> => {
 
-    let url = "https://inventura.flexibee.eu/v2/c/firma4/skladova-karta/" + encodeURIComponent('(sklad = "code:SKLAD" and ucetObdobi = "code:2022" and cenik="ean:' + itemCode +'")')
-    + '?details=';
+    let url = "https://inventura.flexibee.eu/v2/c/firma4/skladova-karta/" + encodeURIComponent('(sklad = "code:SKLAD" and ucetObdobi = "code:2022" and cenik="ean:' + itemCode + '")')
+        + '?detail=' + 'custom%3Acenik%28eanKod%2Cnazev%2Ckod%29%2Csklad%2Cobdobi%2CstavMj' + '&includes%3D%2Fskladova-karta%2Fcenik';
 
-  
+
     return fetch(url, {
         method: "GET",
         headers: {
@@ -57,13 +64,27 @@ export const getCatalog = (itemCode: string) : Promise<SkladovaKartaResponse> =>
 };
 
 
-export const postInventoryHeader = (skladId: number) : Promise<InventoryResult> => {
+export const postItem = (skladId: number, intventoryId: number, skladKartaId: number, cenikId: number, amount: number): Promise<InventoryResult> => {
 
-    let url = "https://inventura.flexibee.eu/v2/c/firma4/inventura/";
+    let url = "https://inventura.flexibee.eu/v2/c/firma4/inventura-polozka";
 
-  
+    var items = [{
+        "inventura": intventoryId,
+        "sklad": skladId,
+        "cenik": cenikId,
+        "skladKarta": skladKartaId,
+        "mnozMjReal": amount
+    }];
+
+    let body =
+    {
+        winstrom: {
+            items
+        }
+    };;
+
     return fetch(url, {
-        method: "GET",
+        method: "POST",
         headers: {
             Authorization: "Basic YWRtaW40OmFkbWluNGFkbWluNA==",
             Accept: "application/json"

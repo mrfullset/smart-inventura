@@ -6,7 +6,7 @@ interface SkladovaKartaResponse {
 
 interface SkladovaKarta {
     id: number;
-    cenik: string;
+    cenik: Cenik;
     'cenik@evidencePath': string;
     'cenik@showAs': string;
     'cenik@ref': string;
@@ -21,4 +21,9 @@ interface SkladovaKarta {
     'typDokl@ref': string;
 }
 
+interface Cenik {
+    id: number;
+    nazev: string;
+    code: string;
+}
 export default SkladovaKartaResponse;
