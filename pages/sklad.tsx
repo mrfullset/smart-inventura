@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import styles from "./vlad.module.scss";
+import styles from "./sklad.module.scss";
 import { Button,  Col, Row,  Container, Form } from "react-bootstrap";
 import InputWithButton from "../components/InputWithButton";
 
-const vlad = () => {
+const sklad = () => {
   const [counter, setCounter] = useState(0);
   let [warehouses, setWarehouses] = useState([]);
+  let [selectedWarehouse, setSelectedWarehouse] = useState({});
+
 
   useEffect(() => {
     let t = 't';
@@ -31,7 +33,7 @@ const vlad = () => {
   }, []);
 
   return (
-    <Container className={styles.vlad}>
+    <Container className={styles.sklad}>
       <div className={styles.pageContent}>
         <Row>
         <div className={styles.name}>
@@ -67,4 +69,4 @@ const vlad = () => {
   );
 };
 
-export default vlad;
+export default sklad;
