@@ -1,0 +1,36 @@
+.scan {
+    padding-top: 50px;
+
+    .main {
+        height: calc(100% - 115px);
+        .content {
+            margin-top: 50px;
+            font-size: 1.3rem;
+            
+            .labels {
+                font-weight: 500;
+                
+            }
+        }
+    
+        .quantity {
+            margin-top: 50px;
+            p {
+                font-weight: 500;
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    .controls {
+        button {
+            width: 100%;
+        }
+
+        :global .row {
+            margin-bottom: 10px;
+        }
+    }
+    
+    
+}

@@ -7,6 +7,7 @@ const NumberSelector = ({ value, onChange }: NumberSelectorProps) => {
     <div className={styles["number-selector"]}>
       <Button
         className={styles.control}
+        variant="outline-primary"
         onClick={() => {
           onChange(value - 1);
         }}
@@ -24,6 +25,7 @@ const NumberSelector = ({ value, onChange }: NumberSelectorProps) => {
       />
       <Button
         className={styles.control}
+        variant="outline-primary"
         onClick={() => {
           onChange(value + 1);
         }}
