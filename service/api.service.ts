@@ -1,6 +1,7 @@
 import React from 'react';
 import { InventoryResult } from '../types/InventoryRespponse';
-import InventuraItem from '../types/InventuraItem';
+import { ItemReponse } from '../types/ItemResponse';
+
 import SkladovaKartaResponse from '../types/skladova-karta';
 import WarehouseResponse from '../types/WarehouseResponse';
 
@@ -18,7 +19,7 @@ export const getWarehouses = (): Promise<WarehouseResponse> => {
         .then((res) => res.json());
 };
 
-export const postInventuraItem = (items: InventuraItem) : Promise<InventoryResult> => {
+export const postInventuraItem = (items: InventuraItem) : Promise<void | InventoryResult> => {
 
     let url = "https://inventura.flexibee.eu/v2/c/firma4/inventura/";
 
@@ -42,7 +43,6 @@ export const postInventuraItem = (items: InventuraItem) : Promise<InventoryResul
         })
         .then((res) =>
         { 
-            debugger;
             res.json()
         });
 };
@@ -64,7 +64,7 @@ export const getCatalog = (itemCode: string): Promise<SkladovaKartaResponse> => 
 };
 
 
-export const postItem = (skladId: number, intventoryId: number, skladKartaId: number, cenikId: number, amount: number): Promise<InventoryResult> => {
+export const postItem = (skladId: number, intventoryId: number, skladKartaId: number, cenikId: number, amount: number): Promise<void | ItemReponse> => {
 
     let url = "https://inventura.flexibee.eu/v2/c/firma4/inventura-polozka";
 
@@ -81,16 +81,23 @@ export const postItem = (skladId: number, intventoryId: number, skladKartaId: nu
         winstrom: {
             items
         }
-    };;
+    };
+
+    let bodyJson = JSON.stringify(body)
 
     return fetch(url, {
         method: "POST",
         headers: {
             Authorization: "Basic YWRtaW40OmFkbWluNGFkbWluNA==",
-            Accept: "application/json"
+            Accept: "application/json",
+            'Content-Type': "application/json",
         },
-    })
-        .then((res) => res.json());
+        body: bodyJson,
+        })
+        .then((res) =>
+        { 
+            res.json()
+        });
 };
 
 
