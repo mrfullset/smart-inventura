@@ -5,11 +5,14 @@ import InputWithButton from "../components/InputWithButton";
 import { NextPage } from "next";
 import { getCatalog, getWarehouses } from "../service/api.service";
 import { start } from "../service/LocalStorageService";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   const [counter, setCounter] = useState(0);
-  let [warehouses, setWarehouses] = useState<any[]>([]);
-  let [selectedWarehouse, setSelectedWarehouse] = useState({});
+  const [warehouses, setWarehouses] = useState<any[]>([]);
+  const [selectedWarehouse, setSelectedWarehouse] = useState({});
+
+  const router = useRouter();
 
   useEffect(() => {
     let t = "t";
@@ -26,13 +29,18 @@ const Home: NextPage = () => {
 
     getCatalog("10007").then(
       (result) => {
-        debugger;
+        // debugger;
       },
       (error) => {
         console.log(error);
       }
     );
   }, []);
+
+  const onWarehouseClick = (id: number) => {
+    start(id.toString());
+    router.push("/scan");
+  };
 
   return (
     <Container className={styles.sklad}>
@@ -53,7 +61,15 @@ const Home: NextPage = () => {
             <div className={styles.warehouse}>or choose it</div>
             <div className={styles.warehouseList}>
               {warehouses.map((wh) => (
-                <div className={styles.warehouseItem}> {wh.nazev} </div>
+                <div
+                  className={styles.warehouseItem}
+                  onClick={() => {
+                    onWarehouseClick(wh.id);
+                  }}
+                >
+                  {" "}
+                  {wh.nazev}{" "}
+                </div>
               ))}
             </div>
           </div>
