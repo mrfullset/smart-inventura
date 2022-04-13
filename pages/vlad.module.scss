@@ -1,5 +1,50 @@
 .vlad {
     background-color: aquamarine;
 
-    // admin4 admin4
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+
+    
 }
+
+.pageContent {
+    width: 1024px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+
+    .controls
+    {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+.name 
+{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 500;
+    margin: 0 auto;
+}
+
+.warehouses
+{
+    background-color: green;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.warehouse
+{
+    background-color: red;
+}
+
+
+
+// jmeno: admin4    helso: admin4admin4  company: firma4

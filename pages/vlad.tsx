@@ -7,13 +7,29 @@ const vlad = () => {
   return (
     <div className={styles.vlad}>
       {counter}
-      <button
-        onClick={() => {
-          setCounter(counter + 1);
-        }}
-      >
-        SUKA
-      </button>
+    <div className={styles.pageContent}>
+        <div className={styles.name}>
+          KAPYBARA S.R.O
+        </div>
+
+      <div className={styles.warehouses}>
+        <div className={styles.warehouse}>
+          Scan warehouse ID 🏭
+        </div>
+
+        <div className={styles.warehouse}>
+          Or choose it
+        </div>
+
+        <button
+          onClick={() => {
+            setCounter(counter + 1);
+          }}
+        >
+          SUKA
+        </button> 
+        </div>
+      </div>
     </div>
   );
 };
