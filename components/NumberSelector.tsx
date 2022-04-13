@@ -2,9 +2,13 @@ import React, { BaseSyntheticEvent } from "react";
 import { Button, Form } from "react-bootstrap";
 import styles from "./NumberSelector.module.scss";
 
-const NumberSelector = ({ value, onChange }: NumberSelectorProps) => {
+const NumberSelector = ({
+  value,
+  onChange,
+  className = "",
+}: NumberSelectorProps) => {
   return (
-    <div className={styles["number-selector"]}>
+    <div className={styles["number-selector"] + " " + className}>
       <Button
         className={styles.control}
         variant="outline-primary"
@@ -41,4 +45,5 @@ export default NumberSelector;
 type NumberSelectorProps = {
   value: number;
   onChange: (value: number) => void;
+  className?: string;
 };

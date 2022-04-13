@@ -1,0 +1,18 @@
+.product-item {
+    display: flex;
+    align-items: center;
+
+    p {
+        margin: 0;
+    }
+
+    .name {
+        width: 50%;
+        margin-right: 10px;
+        font-size: 1.3rem;
+    }
+
+    .selector {
+        flex-grow: 1;
+    }
+}

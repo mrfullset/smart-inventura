@@ -1,0 +1,23 @@
+.scanned-items {
+    padding-top: 50px;
+    height: 100%;
+
+    button {
+        width: 100%;
+    }
+
+    .main {
+        height: calc(100% - 130px);
+        overflow-y: scroll;
+        margin-bottom: 30px;
+        overflow-x: hidden;
+    }
+
+    .product-item {
+        margin: 8px 0;
+    }
+
+    .heading {
+        margin-bottom: 40px;
+    }
+}

@@ -11,7 +11,7 @@ const ScanPage = () => {
     <Container className={styles.scan}>
       <div className={styles.main}>
         <Row>
-          <h1>Scan item 📦</h1>
+          <h1 className="display-1">Scan item 📦</h1>
           <p>or enter code manually</p>
         </Row>
         <Row>
