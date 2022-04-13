@@ -4,7 +4,7 @@ import { Button, Col, Row, Container, Form } from "react-bootstrap";
 import InputWithButton from "../components/InputWithButton";
 import { NextPage } from "next";
 import { getCatalog, getWarehouses } from "../service/api.service";
-
+import { start } from "../service/LocalStorageService";
 
 const Home: NextPage = () => {
   const [counter, setCounter] = useState(0);
@@ -13,27 +13,25 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     let t = "t";
-    getWarehouses()
-      .then(
-        (result) => {
-          setWarehouses(result.winstrom.sklad);
+    getWarehouses().then(
+      (result) => {
+        setWarehouses(result.winstrom.sklad);
 
-          console.log(warehouses.length);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+        console.log(warehouses.length);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
-      getCatalog('10007')
-      .then(
-        (result) => {
-          debugger;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    getCatalog("10007").then(
+      (result) => {
+        debugger;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }, []);
 
   return (

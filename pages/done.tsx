@@ -1,8 +1,11 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import styles from "./done.module.scss";
 
 const Done = () => {
+  const router = useRouter();
+
   return (
     <Container className={styles.done}>
       <Row className={styles.label}>
@@ -11,12 +14,19 @@ const Done = () => {
       </Row>
       <Row>
         <Col xs={12}>
-          <Button>Start new scan</Button>
+          <Button onClick={() => {}}>Start new scan</Button>
         </Col>
       </Row>
       <Row>
         <Col xs={12}>
-          <Button variant="outline-primary">Back to main screen</Button>
+          <Button
+            variant="outline-primary"
+            onClick={() => {
+              router.push("/");
+            }}
+          >
+            Back to main screen
+          </Button>
         </Col>
       </Row>
     </Container>
