@@ -3,12 +3,9 @@
     flex-wrap: nowrap;
     justify-content: center;
     width: 100%;
-
-    
 }
 
 .pageContent {
-    width: 1024px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -25,18 +22,18 @@
 
 .name 
 {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 500;
     margin: 0 auto;
     font-size: 40px;
+    margin-top: 4vh;
+    min-width: 5002px;
 }
 
 .warehouses
 {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 500;
     font-size: 24px;
-    margin: 0 auto;
+    margin: 15vh auto 3vh auto;
 }
 
 .warehouseInput
@@ -48,6 +45,11 @@
     line-height: 21px;
 }
 
+.warehouseList
+{
+    margin-top: 3vh;
+}
+
 .warehouseItem
 {
     height: 15%;
@@ -56,11 +58,17 @@
     border-radius: 7px;
     padding: 5px;
     
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    margin-bottom: 12px;
+}
+
+.warehouseItem:hover
+{
+    border: 2px solid #0d6efd;
+    cursor: pointer;
 }
 
 

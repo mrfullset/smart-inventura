@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./vlad.module.scss";
-import { Button, Form } from "react-bootstrap";
+import { Button,  Col, Row,  Container, Form } from "react-bootstrap";
+import InputWithButton from "../components/InputWithButton";
 
 const vlad = () => {
   const [counter, setCounter] = useState(0);
@@ -29,48 +30,41 @@ const vlad = () => {
     );
   }, []);
 
-  
-
-
   return (
-    <div className={styles.vlad}>
-      {counter}
-    <div className={styles.pageContent}>
+    <Container className={styles.vlad}>
+      <div className={styles.pageContent}>
+        <Row>
         <div className={styles.name}>
           KAPYBARA S.R.O
         </div>
+        </Row>
 
-      <div className={styles.warehouses}>
-        <div className={styles.warehouse}>
-          Scan warehouse ID 🏭
-        </div>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control type="email" className={styles.warehouseInput} placeholder="TEST ID" />
-          </Form.Group>
-        </Form>
-        <div className={styles.warehouse}>
-          Or choose it
-        </div>
-          <div>
-          {
-            warehouses.map(wh => 
-            <div className={styles.warehouseItem}> {wh.nazev} </div>)
-          }
+        <Row>
+          <div className={styles.warehouses}>
+            <div className={styles.warehouse}>
+            Scan warehouse ID 🏭
           </div>
-        <button
-          onClick={() => {
-            setCounter(counter + 1);
-          }}
-        >
-          SUKA
-        </button> 
-        </div>
+            <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+               <InputWithButton buttonText="OK" placeholder="TEST ID" />
+              {/* <Form.Control type="email" className={styles.warehouseInput} placeholder="" /> */}
+            </Form.Group>
+          </Form>
+            <div className={styles.warehouse}>
+            or choose it
+          </div>
+              <div className={styles.warehouseList}>
+              {
+                warehouses.map(wh => 
+                <div className={styles.warehouseItem}> {wh.nazev} </div>)
+              }
+              </div>
+          </div>
+        </Row>
+
       </div>
-    </div>
+    </Container>
   );
 };
-
-
 
 export default vlad;
