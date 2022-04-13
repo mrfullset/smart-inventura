@@ -22,18 +22,24 @@
 
 .name 
 {
-    font-weight: 500;
     margin: 0 auto;
-    font-size: 40px;
     margin-top: 4vh;
     min-width: 5002px;
 }
+
+
 
 .warehouses
 {
     font-weight: 500;
     font-size: 24px;
-    margin: 15vh auto 3vh auto;
+    
+
+    .warehouse {
+        font-weight: 300;
+        text-align: center;
+        margin: 20px auto;
+    }
 }
 
 .warehouseInput
@@ -53,16 +59,17 @@
 .warehouseItem
 {
     height: 15%;
-    border: 2px solid grey;
+    border: 2px solid #CECECE;
     margin-bottom: 5px;
     border-radius: 7px;
-    padding: 5px;
+    padding: 15px 10px;
     
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 12px;
+    color: #585858;
 }
 
 .warehouseItem:hover
