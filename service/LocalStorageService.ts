@@ -2,8 +2,12 @@ import StorageContent from "../types/Storage";
 import StorageProduct from "../types/StorageProduct";
 
 export const start = (warehouseId: string) => {
-  if (localStorage.getItem("inventura")) {
-    return;
+  const item = localStorage.getItem("inventura");
+  if (item) {
+    const s = JSON.parse(item) as StorageContent;
+    if (s.warehouseId === warehouseId) {
+      return;
+    }
   }
 
   const initContent: StorageContent = {
